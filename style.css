@@ -1,0 +1,172 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background-color: #000000 !important;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 45px 0 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #000000;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.header {
+  width: 66.6667vw;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.logo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 3px;
+  width: fit-content;
+  margin: 0 0 14px;
+}
+
+.letter-z {
+  margin-left: 0px;
+  margin-right: 0;
+}
+
+.letter-i {
+  margin-left: -10px;
+  margin-right: 0;
+}
+
+.letter {
+  display: grid;
+  grid-template-columns: repeat(3, 7px);
+  grid-template-rows: repeat(5, 7px);
+  gap: 3px;
+}
+
+.letter span {
+  display: block;
+  width: 7px;
+  height: 7px;
+  background: transparent;
+}
+
+.letter-o span:nth-child(1),
+.letter-o span:nth-child(2),
+.letter-o span:nth-child(3),
+.letter-o span:nth-child(4),
+.letter-o span:nth-child(6),
+.letter-o span:nth-child(7),
+.letter-o span:nth-child(9),
+.letter-o span:nth-child(10),
+.letter-o span:nth-child(12),
+.letter-o span:nth-child(13),
+.letter-o span:nth-child(14),
+.letter-o span:nth-child(15) {
+  background: #ffe600;
+}
+
+.letter-z span:nth-child(1),
+.letter-z span:nth-child(2),
+.letter-z span:nth-child(3),
+.letter-z span:nth-child(6),
+.letter-z span:nth-child(8),
+.letter-z span:nth-child(10),
+.letter-z span:nth-child(13),
+.letter-z span:nth-child(14),
+.letter-z span:nth-child(15) {
+  background: #ffe600;
+}
+
+.letter-i span:nth-child(2),
+.letter-i span:nth-child(5),
+.letter-i span:nth-child(8),
+.letter-i span:nth-child(11),
+.letter-i span:nth-child(14) {
+  background: #ffe600;
+}
+
+.ad-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 66.6667vw;
+  height: 65px;
+  margin: 0 auto;
+
+  background: linear-gradient(
+    to bottom,
+    #318bdf 0%,
+    #0860ae 45%,
+    #03417e 100%
+  );
+
+  border-top: 2px solid #64b5ff;
+  border-left: 2px solid #398bd0;
+  border-right: 2px solid #022f5d;
+  border-bottom: 4px solid #001d3b;
+
+  box-shadow:
+    0 4px 0 #001329,
+    0 7px 12px rgba(0, 0, 0, 0.7);
+
+  position: relative;
+}
+
+.testing-text {
+  display: inline-block;
+  padding: 8px 12px;
+
+  color: #ffe600;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-decoration: none;
+
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.testing-text:hover {
+  color: #ff0000;
+}
+
+.header,
+main {
+  width: 66.6667vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+main .ad-banner {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.header .logo {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.gray-square {
+  width: 66.6667%;
+  aspect-ratio: 1 / 1;
+  margin: 28px 0 0;
+  border: 1px solid #888888;
+  background: transparent;
+  box-sizing: border-box;
+}
