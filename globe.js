@@ -3,10 +3,6 @@ import * as THREE from 'https://esm.sh/three@0.180.0';
 
 const container = document.getElementById('globe');
 
-if (!container) {
-  throw new Error('HTML içinde #globe alanı bulunamadı.');
-}
-
 const world = Globe()(container);
 
 world
@@ -64,16 +60,16 @@ async function loadCountries() {
     const response = await fetch(url);
 
     if (!response.ok) {
-      throw new Error(`Ülke verisi yüklenemedi: HTTP ${response.status}`);
+      throw new Error(`ERROR! ${response.status}`);
     }
 
     const geojson = await response.json();
 
     world.polygonsData(geojson.features);
 
-    console.log('Açık mavi kara parçaları yüklendi.');
+    console.log('.');
   } catch (error) {
-    console.error('Harita yüklenemedi:', error);
+    console.error('ERROR!', error);
   }
 }
 

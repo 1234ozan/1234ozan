@@ -12,7 +12,6 @@ import Icon from "https://esm.sh/ol@10.6.1/style/Icon.js";
 import Fill from "https://esm.sh/ol@10.6.1/style/Fill.js";
 import Stroke from "https://esm.sh/ol@10.6.1/style/Stroke.js";
 import Text from "https://esm.sh/ol@10.6.1/style/Text.js";
-
 const cities = [
   {
     name: "SYDNEY",
@@ -75,9 +74,7 @@ const cities = [
     timeZone: "America/Los_Angeles"
   }
 ];
-
 const mapElement = document.getElementById("openlayers-map");
-
 const pinSvg = `
 <svg xmlns="http://www.w3.org/2000/svg" width="36" height="46" viewBox="0 0 36 46">
   <path
@@ -88,25 +85,20 @@ const pinSvg = `
   />
   <circle cx="18" cy="17" r="5" fill="#ffffff"/>
 </svg>`;
-
 const pinUrl =
   "data:image/svg+xml;charset=utf-8," + encodeURIComponent(pinSvg);
-
 const features = cities.map((city) =>
   new Feature({
     geometry: new Point(fromLonLat([city.lon, city.lat])),
     name: city.name
   })
 );
-
 const markerLayer = new VectorLayer({
   source: new VectorSource({
     features,
     wrapX: false
   }),
-
   visible: false,
-
   style: (feature) => new Style({
     image: new Icon({
       src: pinUrl,
@@ -115,17 +107,14 @@ const markerLayer = new VectorLayer({
       anchorYUnits: "fraction",
       scale: 0.5
     }),
-
     text: new Text({
       text: feature.get("name"),
       font: "10px Arial, sans-serif",
       offsetY: -30,
       textAlign: "center",
-
       fill: new Fill({
         color: "#555"
       }),
-
       stroke: new Stroke({
         color: "#ffffff",
         width: 1
@@ -133,27 +122,22 @@ const markerLayer = new VectorLayer({
     })
   })
 });
-
 const worldExtent = [
   -20037508.34,
   -19971868.88,
   20037508.34,
   19971868.88
 ];
-
 const map = new Map({
   target: mapElement,
-
   layers: [
     new TileLayer({
       source: new OSM({
         wrapX: false
       })
     }),
-
     markerLayer
   ],
-
   view: new View({
     center: fromLonLat([0, 20]),
     zoom: 2,
@@ -165,35 +149,25 @@ const map = new Map({
     smoothExtentConstraint: false
   })
 });
-
 function updateMarkers() {
   const zoom = map.getView().getZoom() ?? 0;
   markerLayer.setVisible(zoom >= 2);
 }
-
 map.getView().on("change:resolution", updateMarkers);
-
 updateMarkers();
-
 map.getView().on("change:resolution", () => {
   userHasZoomed = true;
   updateMarkers();
 });
-
 updateMarkers();
-
 const resizeObserver = new ResizeObserver(() => {
   map.updateSize();
 });
-
 resizeObserver.observe(mapElement);
-
 window.addEventListener("load", () => {
   map.updateSize();
 });
-
 const cityTimes = document.getElementById("city-times");
-
 if (cityTimes) {
   cityTimes.innerHTML = cities.map((city, index) => `
     <tr>
@@ -202,10 +176,8 @@ if (cityTimes) {
       <td id="date-${index}">--/--/----</td>
     </tr>
   `).join("");
-
   function updateCityTimes() {
     const now = new Date();
-
     cities.forEach((city, index) => {
       const time = new Intl.DateTimeFormat("en-GB", {
         timeZone: city.timeZone,
@@ -214,30 +186,23 @@ if (cityTimes) {
         second: "2-digit",
         hourCycle: "h23"
       }).format(now);
-
       const date = new Intl.DateTimeFormat("en-GB", {
         timeZone: city.timeZone,
         day: "2-digit",
         month: "2-digit",
         year: "numeric"
       }).format(now);
-
       document.getElementById(`time-${index}`).textContent = time;
       document.getElementById(`date-${index}`).textContent = date;
     });
   }
-
   updateCityTimes();
   setInterval(updateCityTimes, 1000);
 }
-
 const pageDate = document.getElementById("page-date");
-
 if (pageDate) {
   const today = new Date();
-
   pageDate.dateTime = today.toISOString().slice(0, 10);
-
   pageDate.textContent = new Intl.DateTimeFormat("en-GB", {
     day: "2-digit",
     month: "2-digit",
